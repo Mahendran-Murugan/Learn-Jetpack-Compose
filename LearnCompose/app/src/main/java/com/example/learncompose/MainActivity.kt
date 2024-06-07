@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,20 +44,41 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(
+//    Column(
+//        modifier = modifier
+//            .background(Color.White)
+////            .fillMaxSize()
+////            .fillMaxWidth(),
+//            .size(400.dp, 200.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        verticalArrangement = Arrangement.SpaceEvenly,
+//    ) {
+//        Text(
+//            text = "Hello $name!",
+//            color = Color.Black,
+//            fontSize = 30.sp,
+//        )
+//        Text(
+//            text = "Hello for 2nd time $name!",
+//            color = Color.Black,
+//            fontSize = 30.sp,
+//        )
+//    }
+    Row (
         modifier = modifier
             .background(Color.White)
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
-    ) {
+            .fillMaxSize()
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ){
         Text(
-            text = "Hello $name!",
+            text = name,
             color = Color.Black,
             fontSize = 30.sp,
         )
         Text(
-            text = "Hello for 2nd time $name!",
+            text = name,
             color = Color.Black,
             fontSize = 30.sp,
         )
