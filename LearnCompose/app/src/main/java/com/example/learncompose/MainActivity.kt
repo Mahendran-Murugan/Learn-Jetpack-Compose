@@ -18,7 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
@@ -27,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -167,20 +170,49 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //            )s
 //        }
 //    }
-    LazyColumn (
+//    LazyColumn (
+//        modifier = modifier
+//            .fillMaxSize()
+//            .background(Color.Black),
+//        verticalArrangement = Arrangement.SpaceEvenly,
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//    ){
+//        items(count = 10){i ->
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//                contentDescription = null,
+//                modifier = modifier
+//                    .background(Color.Yellow)
+//            )
+//        }
+//    }
+    LazyRow (
         modifier = modifier
             .fillMaxSize()
             .background(Color.Black),
-        verticalArrangement = Arrangement.SpaceEvenly,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
     ){
-        items(count = 10){
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = null,
-                modifier = modifier
-                    .background(Color.Yellow)
-            )
+        items(count = 10){ i->
+            if(i > 5){
+                Icon(
+                    imageVector =  Icons.Default.Add,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = modifier
+                        .height(30.dp)
+                        .width(30.dp)
+                        .clip(CircleShape)
+                        .background(Color.Green)
+                )
+            }else{
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                    contentDescription = null,
+                    modifier = modifier
+                        .background(Color.Yellow)
+                )
+            }
         }
     }
 }
