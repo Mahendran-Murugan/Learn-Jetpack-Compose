@@ -112,18 +112,7 @@ fun SimpleListApp (modifier: Modifier = Modifier) {
                 )
             }
         }
-        LazyColumn {
-            items(dataList){ currData ->
-                Text(
-                    text = currData,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(16.dp)
-                )
-                Divider()
-            }
-        }
+        NameList(dataList = dataList)
     }
 }
 
@@ -155,6 +144,25 @@ fun CounterApp(modifier: Modifier = Modifier) {
                )
            }
        }
+}
+
+@Composable
+fun NameList(
+    dataList:List<String>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn {
+        items(dataList){ currData ->
+            Text(
+                text = currData,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = modifier
+                    .padding(16.dp)
+            )
+            Divider()
+        }
+    }
 }
 
 @Composable
