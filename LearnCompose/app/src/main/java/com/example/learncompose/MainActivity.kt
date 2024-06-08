@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
@@ -40,10 +43,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LearnComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
                     Greeting(
                         name = "Mahendran M",
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(padding)
                     )
                 }
             }
@@ -109,36 +112,69 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //            fontSize = 30.sp,
 //        )
 //    }
-    Column(
+//    Column(
+//        modifier = modifier
+//            .fillMaxSize(),
+//        verticalArrangement = Arrangement.SpaceEvenly,
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//    ){
+//        val res:String = if(name.length > 10)  "> 10 So Add Displayed" else "< 10 So Android Displayed"
+//        Text(
+//            text = name,
+//            color = Color.Gray,
+//            fontSize = 30.sp,
+//            fontWeight = FontWeight.Bold,
+//        )
+//        Text(
+//            text = "Length is ${name.length} $res",
+//            color = Color.Gray,
+//            fontSize = 30.sp,
+//            fontWeight = FontWeight.Bold,
+//        )
+//        if(name.length > 10){
+//            Icon(
+//                imageVector =  Icons.Default.Add,
+//                contentDescription = null,
+//                tint = Color.White,
+//                modifier = modifier
+//                    .background(Color.Green)
+//                    .height(60.dp)
+//                    .width(60.dp)
+//            )
+//        }else{
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//                contentDescription = null,
+//                modifier = modifier
+//                    .background(Color.Yellow)
+//            )
+//        }
+//
+//    }
+//    Column (
+//        modifier = modifier
+//            .fillMaxSize()
+//            .background(Color.Black),
+//        verticalArrangement = Arrangement.SpaceEvenly,
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//    ){
+//        for(i in 1..5){
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//                contentDescription = null,
+//                modifier = modifier
+//                    .background(Color.Yellow)
+//            )s
+//        }
+//    }
+    LazyColumn (
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.Black),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
-        val res:String = if(name.length > 10)  "> 10 So Add Displayed" else "< 10 So Android Displayed"
-        Text(
-            text = name,
-            color = Color.Gray,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = "Length is ${name.length} $res",
-            color = Color.Gray,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-        )
-        if(name.length > 10){
-            Icon(
-                imageVector =  Icons.Default.Add,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = modifier
-                    .background(Color.Green)
-                    .height(60.dp)
-                    .width(60.dp)
-            )
-        }else{
+        items(count = 10){
             Image(
                 painter = painterResource(id = R.drawable.ic_launcher_foreground),
                 contentDescription = null,
@@ -146,6 +182,5 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                     .background(Color.Yellow)
             )
         }
-
     }
 }
