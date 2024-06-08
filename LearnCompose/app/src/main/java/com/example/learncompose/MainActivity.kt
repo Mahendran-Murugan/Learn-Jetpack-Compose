@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -45,6 +47,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,11 +69,62 @@ class MainActivity : ComponentActivity() {
 //                    CounterApp(
 //                        modifier = Modifier.padding(safePadding)
 //                    )
-                    SimpleListApp(
+                    MessageTile(
                         modifier = Modifier.padding(safePadding)
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun MessageTile(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .padding(all = 8.dp)
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "testIconImage",
+            modifier = modifier
+                .clip(CircleShape)
+                .background(Color.Green)
+                .size(40.dp)
+        )
+        Spacer(
+            modifier = Modifier
+                .width(15.dp)
+        )
+
+        Column(
+            modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
+                .border(1.dp, Color.Green, RoundedCornerShape(15.dp))
+                .background(Color.Gray.copy(alpha = 0.5f))
+                .padding(20.dp)
+        ){
+            Text(
+                text = "Mahendran M",
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Green.copy(alpha = 0.6f)
+                )
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(15.dp)
+            )
+
+            Text(
+                text = "Jetpack Compose",
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            )
         }
     }
 }
