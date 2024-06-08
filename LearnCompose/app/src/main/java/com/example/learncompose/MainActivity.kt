@@ -1,6 +1,7 @@
 package com.example.learncompose
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,9 +26,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -38,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -57,7 +63,10 @@ class MainActivity : ComponentActivity() {
 //                        name = "Mahendran M",
 //                        modifier = Modifier.padding(padding)
 //                    )
-                    App(
+//                    CounterApp(
+//                        modifier = Modifier.padding(safePadding)
+//                    )
+                    SimpleListApp(
                         modifier = Modifier.padding(safePadding)
                     )
                 }
@@ -67,10 +76,63 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun App(modifier: Modifier = Modifier) {
+fun SimpleListApp (modifier: Modifier = Modifier) {
+    var data by remember {
+        mutableStateOf("")
+    }
+
+    var dataList by remember {
+        mutableStateOf(listOf<String>())
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(18.dp)
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            OutlinedTextField(
+                value = data,
+                onValueChange = { text ->
+                    data = text
+                }
+            )
+            Button(onClick = {
+                if(data.isNotEmpty()){
+                    dataList += data
+                    data = ""
+                }
+            }) {
+                Text(
+                    text = "Add"
+                )
+            }
+        }
+        LazyColumn {
+            items(dataList){ currData ->
+                Text(
+                    text = currData,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .padding(16.dp)
+                )
+                Divider()
+            }
+        }
+    }
+}
+
+@Composable
+fun CounterApp(modifier: Modifier = Modifier) {
     var count by remember {
         mutableStateOf(0)
     }
+    val context = LocalContext.current
        Column(
            modifier = modifier
                .fillMaxSize()
@@ -86,6 +148,7 @@ fun App(modifier: Modifier = Modifier) {
             )
            Button(onClick = {
                count++
+               Toast.makeText(context, if(count < 10) "Button Clicked" else "enough Clicking Button", Toast.LENGTH_SHORT).show()
            }) {
                Text(
                    text = "Click"
