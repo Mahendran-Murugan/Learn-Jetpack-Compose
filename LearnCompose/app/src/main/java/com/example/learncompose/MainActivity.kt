@@ -176,28 +176,28 @@ fun CounterApp(modifier: Modifier = Modifier) {
         mutableStateOf(0)
     }
     val context = LocalContext.current
-       Column(
-           modifier = modifier
-               .fillMaxSize()
-               .background(Color.White),
-           horizontalAlignment = Alignment.CenterHorizontally,
-           verticalArrangement = Arrangement.Center,
-       ) {
-            Text(
-                text = "$count",
-                color = Color.Black,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-            )
-           Button(onClick = {
-               count++
-               Toast.makeText(context, if(count < 10) "Button Clicked" else "enough Clicking Button", Toast.LENGTH_SHORT).show()
-           }) {
-               Text(
-                   text = "Click"
-               )
-           }
+    Column(
+       modifier = modifier
+           .fillMaxSize()
+           .background(Color.White),
+       horizontalAlignment = Alignment.CenterHorizontally,
+       verticalArrangement = Arrangement.Center,
+    ) {
+        Text(
+            text = "$count",
+            color = Color.Black,
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
+        )
+       Button(onClick = {
+           count++
+           Toast.makeText(context, if(count < 10) "Button Clicked" else "enough Clicking Button", Toast.LENGTH_SHORT).show()
+       }) {
+           Text(
+               text = "Click"
+           )
        }
+    }
 }
 
 @Composable
