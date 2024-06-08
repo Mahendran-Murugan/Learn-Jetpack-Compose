@@ -23,10 +23,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,15 +52,46 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LearnComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
-                    Greeting(
-                        name = "Mahendran M",
-                        modifier = Modifier.padding(padding)
+                Scaffold(modifier = Modifier.fillMaxSize()) { safePadding ->
+//                    Greeting(
+//                        name = "Mahendran M",
+//                        modifier = Modifier.padding(padding)
+//                    )
+                    App(
+                        modifier = Modifier.padding(safePadding)
                     )
                 }
             }
         }
     }
+}
+
+@Composable
+fun App(modifier: Modifier = Modifier) {
+    var count by remember {
+        mutableStateOf(0)
+    }
+       Column(
+           modifier = modifier
+               .fillMaxSize()
+               .background(Color.White),
+           horizontalAlignment = Alignment.CenterHorizontally,
+           verticalArrangement = Arrangement.Center,
+       ) {
+            Text(
+                text = "$count",
+                color = Color.Black,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+            )
+           Button(onClick = {
+               count++
+           }) {
+               Text(
+                   text = "Click"
+               )
+           }
+       }
 }
 
 @Composable
@@ -186,33 +223,33 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //            )
 //        }
 //    }
-    LazyRow (
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color.Black),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-    ){
-        items(count = 10){ i->
-            if(i > 5){
-                Icon(
-                    imageVector =  Icons.Default.Add,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = modifier
-                        .height(30.dp)
-                        .width(30.dp)
-                        .clip(CircleShape)
-                        .background(Color.Green)
-                )
-            }else{
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    contentDescription = null,
-                    modifier = modifier
-                        .background(Color.Yellow)
-                )
-            }
-        }
-    }
+//    LazyRow (
+//        modifier = modifier
+//            .fillMaxSize()
+//            .background(Color.Black),
+//        horizontalArrangement = Arrangement.SpaceEvenly,
+//        verticalAlignment = Alignment.CenterVertically,
+//    ){
+//        items(count = 10){ i->
+//            if(i > 5){
+//                Icon(
+//                    imageVector =  Icons.Default.Add,
+//                    contentDescription = null,
+//                    tint = Color.White,
+//                    modifier = modifier
+//                        .height(30.dp)
+//                        .width(30.dp)
+//                        .clip(CircleShape)
+//                        .background(Color.Green)
+//                )
+//            }else{
+//                Image(
+//                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+//                    contentDescription = null,
+//                    modifier = modifier
+//                        .background(Color.Yellow)
+//                )
+//            }
+//        }
+//    }
 }
